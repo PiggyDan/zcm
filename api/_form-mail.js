@@ -7,7 +7,12 @@
  * Files prefixed with "_" are not routed by Vercel.
  */
 
-const DEFAULT_RECIPIENTS = ["it@gkllc.mn", "admin@gkllc.mn", "share@gkllc.mn"];
+const DEFAULT_RECIPIENTS = [
+  "zasaginfo@gmail.com",
+  "zcm.hse.bilgee@gmail.com",
+  "hse.zcm@erkhettunsh.com",
+  "battseren@srmongolia.mn"
+];
 
 // Resend only delivers to arbitrary addresses from a verified domain.
 const DEFAULT_FROM = "Аяллын маягт <onboarding@resend.dev>";

@@ -13,3 +13,4 @@ env.*.local
 .vercel
 service-account*.json
 sample-output.pdf
+.env*
