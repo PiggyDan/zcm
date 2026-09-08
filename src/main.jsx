@@ -358,7 +358,6 @@ function App() {
                 <input
                   required
                   aria-label="Улсын дугаар"
-                  aria-describedby="plateHint"
                   name="vehiclePlate"
                   value={form.vehiclePlate}
                   onChange={(e) => {
@@ -371,7 +370,6 @@ function App() {
                   title="4 орон тоо, 3 кирилл үсэг оруулна уу. Жишээ: 9911 УБА"
                 />
               </div>
-              <small id="plateHint">4 орон тоо, 3 кирилл үсэг. Жишээ: 9911 УБА</small>
             </Field>
             </div>
           </Section>
