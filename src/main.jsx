@@ -94,7 +94,8 @@ function App() {
     otherDirection: "",
     transport: "Байгууллагын унаагаар",
     driver: "",
-    vehicle: ""
+    vehicle: "",
+    vehiclePlate: ""
   });
 
   const updateForm = (e) =>
@@ -123,6 +124,8 @@ function App() {
     if (sending) return;
 
     const missing = [];
+    if (!form.vehicle.trim()) missing.push("Автомашины марк");
+    if (!/^[0-9]{4} [А-ЯӨҮЁ]{3}$/.test(form.vehiclePlate.trim())) missing.push("Улсын дугаар (9911 УБА)");
 
     if (!form.department.trim()) missing.push("Харьяалагдах хэлтэс");
     if (!form.travelDate) missing.push("Аялах өдөр");
@@ -153,7 +156,7 @@ function App() {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          form,
+          form: { ...form, vehicle: `${form.vehicle.trim()}, ${form.vehiclePlate.trim()}` },
           employees,
           signature
         })
@@ -177,7 +180,8 @@ function App() {
         otherDirection: "",
         transport: "Байгууллагын унаагаар",
         driver: "",
-        vehicle: ""
+        vehicle: "",
+        vehiclePlate: ""
       });
       setShowSafety(false);
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -338,14 +342,38 @@ function App() {
               />
             </Field>
 
-            <Field label="Автомашины марк, улсын дугаар">
+            <div className="twoCols">
+            <Field label="Автомашины марк *">
               <input
+                required
                 name="vehicle"
                 value={form.vehicle}
                 onChange={updateForm}
-                placeholder="Жишээ: Lexus LX700, 99-11 УБА"
+                placeholder="Жишээ: Lexus LX700"
               />
             </Field>
+            <Field label="Улсын дугаар *">
+              <div className="vehiclePlate">
+                <span className="plateCountry" aria-hidden="true">MNG</span>
+                <input
+                  required
+                  aria-label="Улсын дугаар"
+                  aria-describedby="plateHint"
+                  name="vehiclePlate"
+                  value={form.vehiclePlate}
+                  onChange={(e) => {
+                    const value = e.target.value.toUpperCase().replace(/[\s-]/g, "");
+                    setForm({ ...form, vehiclePlate: value.length > 4 ? `${value.slice(0, 4)} ${value.slice(4)}` : value });
+                  }}
+                  pattern="[0-9]{4} [А-ЯӨҮЁ]{3}"
+                  maxLength={8}
+                  placeholder="9911 УБА"
+                  title="4 орон тоо, 3 кирилл үсэг оруулна уу. Жишээ: 9911 УБА"
+                />
+              </div>
+              <small id="plateHint">4 орон тоо, 3 кирилл үсэг. Жишээ: 9911 УБА</small>
+            </Field>
+            </div>
           </Section>
 
           <Section title={`Зорчих ажилтан (${employees.length})`}>

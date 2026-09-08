@@ -357,6 +357,10 @@ export async function sendFormMail(payload) {
     return { status: 400, body: { error: "Маягтын мэдээлэл дутуу байна." } };
   }
 
+  if (typeof form.vehicle !== "string" || !/^\S[^\r\n]*, [0-9]{4} [А-ЯӨҮЁ]{3}$/u.test(form.vehicle.trim())) {
+    return { status: 400, body: { error: "Автомашины марк, улсын дугаарыг оруулна уу. Жишээ: Lexus LX700, 9911 УБА" } };
+  }
+
   const missing = validate(form, employees);
   if (missing.length > 0) {
     return { status: 400, body: { error: `Дутуу байна: ${missing[0]}` } };

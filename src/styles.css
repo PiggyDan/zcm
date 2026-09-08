@@ -298,6 +298,46 @@ select:focus {
   margin-top: 20px;
 }
 
+.vehiclePlate {
+  display: flex;
+  align-items: stretch;
+  border: 2px solid #334155;
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.plateCountry {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  background: #1e40af;
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.vehiclePlate input {
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.vehiclePlate:focus-within {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+}
+
+.field small {
+  color: #64748b;
+  font-size: 11px;
+}
+
 .safetyToggle {
   width: 100%;
   border: 1px solid rgba(148,163,184,0.35);
