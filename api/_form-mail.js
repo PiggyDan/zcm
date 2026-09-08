@@ -58,6 +58,7 @@ async function buildPdfBuffer(form, employees, signature) {
   addRow("Аялах чиглэл", form.direction === "Бусад" ? form.otherDirection : form.direction);
   addRow("Тээврийн хэрэгсэл", form.transport);
   addRow("Жолооч", form.driver || "-");
+  addRow("Жолоочийн утасны дугаар", form.driverPhone || "-");
   addRow("Автомашин", form.vehicle || "-");
 
   doc.moveDown();
@@ -159,6 +160,8 @@ function parseSignature(signature) {
 
 function validate(form, employees) {
   const missing = [];
+  if (typeof form.driver !== "string" || !form.driver.trim()) missing.push("Жолоочийн нэр");
+  if (typeof form.driverPhone !== "string" || !/^[0-9]+$/.test(form.driverPhone)) missing.push("Жолоочийн утасны дугаар (зөвхөн тоо)");
 
   if (!form.department?.trim()) missing.push("Харьяалагдах хэлтэс");
   if (!form.travelDate) missing.push("Аялах өдөр");
@@ -217,6 +220,7 @@ function buildHtml(form, employees, hasSignature) {
           ${row("Аялах чиглэл", direction)}
           ${row("Тээврийн хэрэгсэл", form.transport)}
           ${row("Жолооч", form.driver)}
+          ${row("Жолоочийн утасны дугаар", form.driverPhone)}
           ${row("Автомашин", form.vehicle)}
           ${employeeRows}
           <tr>
@@ -253,6 +257,7 @@ function buildText(form, employees) {
     `Аялах чиглэл: ${direction}`,
     `Тээврийн хэрэгсэл: ${form.transport}`,
     `Жолооч: ${form.driver || "-"}`,
+    `Жолоочийн утасны дугаар: ${form.driverPhone || "-"}`,
     `Автомашин: ${form.vehicle || "-"}`,
     ""
   ];

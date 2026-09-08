@@ -94,6 +94,7 @@ function App() {
     otherDirection: "",
     transport: "Байгууллагын унаагаар",
     driver: "",
+    driverPhone: "",
     vehicle: "",
     vehiclePlate: ""
   });
@@ -124,6 +125,8 @@ function App() {
     if (sending) return;
 
     const missing = [];
+    if (!form.driver.trim()) missing.push("Жолоочийн нэр");
+    if (!/^[0-9]+$/.test(form.driverPhone)) missing.push("Жолоочийн утасны дугаар");
     if (!form.vehicle.trim()) missing.push("Автомашины марк");
     if (!/^[0-9]{4} [А-ЯӨҮЁ]{3}$/.test(form.vehiclePlate.trim())) missing.push("Улсын дугаар (9911 УБА)");
 
@@ -180,6 +183,7 @@ function App() {
         otherDirection: "",
         transport: "Байгууллагын унаагаар",
         driver: "",
+        driverPhone: "",
         vehicle: "",
         vehiclePlate: ""
       });
@@ -333,14 +337,29 @@ function App() {
               </select>
             </Field>
 
-            <Field label="Жолоочийн нэр, утасны дугаар">
+            <div className="twoCols">
+            <Field label="Жолоочийн нэр *">
               <input
+                required
                 name="driver"
                 value={form.driver}
                 onChange={updateForm}
-                placeholder="Жишээ: Бат 99112233"
+                placeholder="Жишээ: Бат"
               />
             </Field>
+            <Field label="Жолоочийн утасны дугаар *">
+              <input
+                required
+                name="driverPhone"
+                type="tel"
+                inputMode="numeric"
+                pattern="[0-9]+"
+                value={form.driverPhone}
+                onChange={(e) => setForm({ ...form, driverPhone: e.target.value.replace(/[^0-9]/g, "") })}
+                placeholder="Жишээ: 99112233"
+              />
+            </Field>
+            </div>
 
             <div className="twoCols">
             <Field label="Автомашины марк *">
