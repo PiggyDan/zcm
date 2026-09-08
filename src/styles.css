@@ -322,9 +322,8 @@ select:focus {
   min-width: 0;
   border: 0;
   border-radius: 0;
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font: inherit;
+  letter-spacing: normal;
   text-align: center;
 }
 
