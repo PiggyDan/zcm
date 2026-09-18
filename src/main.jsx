@@ -99,6 +99,8 @@ function App() {
     vehiclePlate: ""
   });
 
+  const isPublicTransport = form.transport === "АТҮТ / Нийтийн тээвэр";
+
   const updateForm = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -125,10 +127,13 @@ function App() {
     if (sending) return;
 
     const missing = [];
+    if (!isPublicTransport) {
     if (!form.driver.trim()) missing.push("Жолоочийн нэр");
     if (!/^[0-9]+$/.test(form.driverPhone)) missing.push("Жолоочийн утасны дугаар");
     if (!form.vehicle.trim()) missing.push("Автомашины марк");
     if (!/^[0-9]{4} [А-ЯӨҮЁ]{3}$/.test(form.vehiclePlate.trim())) missing.push("Улсын дугаар (9911 УБА)");
+
+    }
 
     if (!form.department.trim()) missing.push("Харьяалагдах хэлтэс");
     if (!form.travelDate) missing.push("Аялах өдөр");
@@ -159,7 +164,13 @@ function App() {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          form: { ...form, vehicle: `${form.vehicle.trim()}, ${form.vehiclePlate.trim()}` },
+          form: {
+            ...form,
+            driver: isPublicTransport ? "" : form.driver,
+            driverPhone: isPublicTransport ? "" : form.driverPhone,
+            vehicle: isPublicTransport ? "" : `${form.vehicle.trim()}, ${form.vehiclePlate.trim()}`,
+            vehiclePlate: isPublicTransport ? "" : form.vehiclePlate
+          },
           employees,
           signature
         })
@@ -337,6 +348,7 @@ function App() {
               </select>
             </Field>
 
+            {!isPublicTransport && (<>
             <div className="twoCols">
             <Field label="Жолоочийн нэр *">
               <input
@@ -391,6 +403,7 @@ function App() {
               </div>
             </Field>
             </div>
+            </>)}
           </Section>
 
           <Section title={`Зорчих ажилтан (${employees.length})`}>

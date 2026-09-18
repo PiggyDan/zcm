@@ -160,8 +160,10 @@ function parseSignature(signature) {
 
 function validate(form, employees) {
   const missing = [];
+  if (form.transport !== "АТҮТ / Нийтийн тээвэр") {
   if (typeof form.driver !== "string" || !form.driver.trim()) missing.push("Жолоочийн нэр");
   if (typeof form.driverPhone !== "string" || !/^[0-9]+$/.test(form.driverPhone)) missing.push("Жолоочийн утасны дугаар (зөвхөн тоо)");
+  }
 
   if (!form.department?.trim()) missing.push("Харьяалагдах хэлтэс");
   if (!form.travelDate) missing.push("Аялах өдөр");
@@ -362,7 +364,7 @@ export async function sendFormMail(payload) {
     return { status: 400, body: { error: "Маягтын мэдээлэл дутуу байна." } };
   }
 
-  if (typeof form.vehicle !== "string" || !/^\S[^\r\n]*, [0-9]{4} [А-ЯӨҮЁ]{3}$/u.test(form.vehicle.trim())) {
+  if (form.transport !== "АТҮТ / Нийтийн тээвэр" && (typeof form.vehicle !== "string" || !/^\S[^\r\n]*, [0-9]{4} [А-ЯӨҮЁ]{3}$/u.test(form.vehicle.trim()))) {
     return { status: 400, body: { error: "Автомашины марк, улсын дугаарыг оруулна уу. Жишээ: Lexus LX700, 9911 УБА" } };
   }
 
