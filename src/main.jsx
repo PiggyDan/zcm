@@ -313,6 +313,11 @@ function App() {
                 <option>Сайншанд-Улаанбаатар</option>
                 <option>Сайншанд-Гурвантэс</option>
                 <option>Гурвантэс-Улаанбаатар</option>
+                <option>Гурвантэс-Сайншанд</option>
+                <option>Чандмань уул төмрийн уурхай-Улаанбаатар</option>
+                <option>Чандмань уул төмрийн уурхай-Сайншанд</option>
+                <option>Чандмань уул төмрийн уурхай-Чойр</option>
+                <option>Чандмань уул төмрийн уурхай-Гурвантэс</option>
                 <option>Бусад</option>
               </select>
             </Field>
