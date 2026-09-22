@@ -286,38 +286,36 @@ function App() {
               </select>
             </Field>
 
-            <div className="twoCols">
-              <Field label="Аялах өдөр *">
-                <input
-                  required
-                  type="date"
-                  name="travelDate"
-                  value={form.travelDate}
-                  onChange={updateForm}
-                />
-              </Field>
+            <Field label="Аялах өдөр *">
+              <input
+                required
+                type="date"
+                name="travelDate"
+                value={form.travelDate}
+                onChange={updateForm}
+              />
+            </Field>
 
-              <Field label="Аялах чиглэл *">
-                <select
-                  required
-                  name="direction"
-                  value={form.direction}
-                  onChange={updateForm}
-                >
-                  <option value="">Сонгох</option>
-                  <option>Улаанбаатар-Сайншанд</option>
-                  <option>Улаанбаатар-Чандмань уул төмрийн хүдрийн уурхай</option>
-                  <option>Улаанбаатар-Дэлгэрэх сум</option>
-                  <option>Улаанбаатар-Гурвантэс</option>
-                  <option>Сайншанд-Чандмань уул төмрийн хүдрийн уурхай</option>
-                  <option>Сайншанд-Дэлгэрэх сум</option>
-                  <option>Сайншанд-Улаанбаатар</option>
-                  <option>Сайншанд-Гурвантэс</option>
-                  <option>Гурвантэс-Улаанбаатар</option>
-                  <option>Бусад</option>
-                </select>
-              </Field>
-            </div>
+            <Field label="Аялах чиглэл *">
+              <select
+                required
+                name="direction"
+                value={form.direction}
+                onChange={updateForm}
+              >
+                <option value="">Сонгох</option>
+                <option>Улаанбаатар-Сайншанд</option>
+                <option>Улаанбаатар-Чандмань уул төмрийн хүдрийн уурхай</option>
+                <option>Улаанбаатар-Дэлгэрэх сум</option>
+                <option>Улаанбаатар-Гурвантэс</option>
+                <option>Сайншанд-Чандмань уул төмрийн хүдрийн уурхай</option>
+                <option>Сайншанд-Дэлгэрэх сум</option>
+                <option>Сайншанд-Улаанбаатар</option>
+                <option>Сайншанд-Гурвантэс</option>
+                <option>Гурвантэс-Улаанбаатар</option>
+                <option>Бусад</option>
+              </select>
+            </Field>
 
             {form.direction === "Бусад" && (
               <Field label="Бусад явах чиглэл *">
