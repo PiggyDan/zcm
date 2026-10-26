@@ -8,10 +8,8 @@
  */
 
 const DEFAULT_RECIPIENTS = [
-  "zasaginfo@gmail.com",
-  "zcm.hse.bilgee@gmail.com",
-  "hse.zcm@erkhettunsh.com",
-  "battseren@srmongolia.mn"
+  "ceo@unudtunsh.mn",
+  "czmanager@unudtunsh.mn"
 ];
 
 // Resend only delivers to arbitrary addresses from a verified domain.
