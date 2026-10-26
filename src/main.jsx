@@ -15,14 +15,23 @@ import {
   Loader2,
   PhoneCall
 } from "lucide-react";
-import companyLogo from "./assets/logos/UTLOGO.png";
+import companyLogo from "./assets/logos/zcm.png";
 import "./styles.css";
 import SafetyReader from "./SafetyReader";
 
 const emptyEmployee = () => ({ name: "", position: "", phone: "" });
 
 const companyOptions = [
-  { value: "Өнөд Түнш ХХК" },
+  { value: "Засагчандмань майнз ХХК" },
+  { value: "Эрхэт түнш ХХК" },
+  { value: "Титантауэр констракшн ХХК" },
+  { value: "Грийн энержи ХХК" },
+  { value: "Дээдийн говийн жим ХХК" },
+  { value: "Хонгор алтайн тал ХХК" },
+  { value: "Эйч эйч ай ХХК" },
+  { value: "Форчо майнинг ХХК" },
+  { value: "Хар ирвэс ХХК" },
+  { value: "Бусад ХХК" }
 ];
 
 const SIGNATURE_MAX_EDGE = 900;
@@ -251,13 +260,14 @@ function App() {
             <CompanyLogo />
           </div>
           <div className="titleArea">
-            <p className="eyebrow">Өнөд Түнш ХХК</p>
+            <p className="eyebrow">Засагчандмань Майнз ХХК</p>
             <h1>
-              АТҮТ болон замын унаагаар зорчих үеийн
-              аюулгүй ажиллагааны зааварчилгаа
+              АТҮТ болон замын унаагаар зорчих үеийн аюулгүй ажиллагааны
+              зааварчилгаа
             </h1>
-            <div className="metaRow">
-              <span className="metaPill">Хувилбар: 01</span>
+            <div className="meta">
+              <span>Хувилбар: 01</span>
+              <span>ЗЧМ-УТ-Ж39-Х01 Холын аяллын журам</span>
             </div>
           </div>
         </header>
@@ -295,13 +305,16 @@ function App() {
                 onChange={updateForm}
               >
                 <option value="">Сонгох</option>
-                <option value="Захиргаа">Удирдлага</option>
-                <option value="Хүний нөөц">Захиргаа</option>
-                <option value="ХАБЭАБО">ГХБ</option>
-                <option value="Уулын хэлтэс">Засвар</option>
-                <option value="Тэсэлгээний хэлтэс">ХАБЭАБО</option>
-                <option value="Удирдлага">IT</option>
+                <option value="Захиргаа">Захиргаа</option>
+                <option value="Хүний нөөц">Хүний нөөц</option>
+                <option value="ХАБЭАБО">ХАБЭАБО</option>
+                <option value="Уулын хэлтэс">Уулын хэлтэс</option>
+                <option value="Тэсэлгээний хэлтэс">Тэсэлгээний хэлтэс</option>
+                <option value="Удирдлага">Удирдлага</option>
                 <option value="Санхүү">Санхүү</option>
+                <option value="Хууль">Хууль</option>
+                <option value="Үйл ажиллагаа">Үйл ажиллагаа</option>
+                <option value="IT">IT</option>
                 <option value="Бусад">Бусад</option>
               </select>
             </Field>
@@ -324,18 +337,20 @@ function App() {
                 onChange={updateForm}
               >
                 <option value="">Сонгох</option>
-                <option>Улаанбаатар-Даланзадгад</option>
-                <option>Улаанбаатар-Шивээхүрэн /сайт/</option>
-                <option>Улаанбаатар-Баянхонгор</option>
-                <option>Улаанбаатар-Хотгор уурхай</option>
-                <option>Даланзадгад-Улаанбаатар</option>
-                <option>Даланзадгад-Шивээхүрэн /сайт/</option>
-                <option>Шивээхүрэн /сайт/-Даланзадгад</option>
-                <option>Шивээхүрэн /сайт/-Улаанбаатар</option>
-                <option>Цагаанхад-Шивээхүрэн /сайт/</option>
-                <option>Цагаанхад-Хотгор уурхай</option>
-                <option>Шивээхүрэн /сайт/-Цагаанхад</option>
-                <option>Хотгор уурхай-Цагаанхад</option>
+                <option>Улаанбаатар-Сайншанд</option>
+                <option>Улаанбаатар-Чандмань уул төмрийн хүдрийн уурхай</option>
+                <option>Улаанбаатар-Дэлгэрэх сум</option>
+                <option>Улаанбаатар-Гурвантэс</option>
+                <option>Сайншанд-Чандмань уул төмрийн хүдрийн уурхай</option>
+                <option>Сайншанд-Дэлгэрэх сум</option>
+                <option>Сайншанд-Улаанбаатар</option>
+                <option>Сайншанд-Гурвантэс</option>
+                <option>Гурвантэс-Улаанбаатар</option>
+                <option>Гурвантэс-Сайншанд</option>
+                <option>Чандмань уул төмрийн уурхай-Улаанбаатар</option>
+                <option>Чандмань уул төмрийн уурхай-Сайншанд</option>
+                <option>Чандмань уул төмрийн уурхай-Чойр</option>
+                <option>Чандмань уул төмрийн уурхай-Гурвантэс</option>
                 <option>Бусад</option>
               </select>
             </Field>
@@ -565,7 +580,7 @@ function App() {
                     <a href="tel:105"><small>Онцгой байдал</small>105</a>
                     <a href="tel:102"><small>Цагдаа</small>102</a>
                     <a href="tel:103"><small>Эмнэлэг</small>103</a>
-                    <a href="tel:89018917"><small>Байгууллага</small>89018917</a>
+                    <a href="tel:75053443"><small>Байгууллага</small>75053443</a>
                   </div>
                 </div>
               </div>
